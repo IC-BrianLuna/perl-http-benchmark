@@ -29,11 +29,11 @@ sub connect {
 
 	return $self->{dbh} if defined $self->{dbh} && $self->{dbh}{dbh}->ping;
 
-	my $user     = $ENV{DATABASE_USER};
-	my $pass     = $ENV{DATABASE_PASSWORD};
-	my $host     = $ENV{DATABASE_HOST};
-	my $port     = $ENV{DATABASE_PORT};
-	my $database = $ENV{DATABASE_NAME};
+	my $user     = $ENV{DATABASE_USER}     ? $ENV{DATABASE_USER}     : $db_config{user};
+	my $pass     = $ENV{DATABASE_PASSWORD} ? $ENV{DATABASE_PASSWORD} : $db_config{pass};
+	my $host     = $ENV{DATABASE_HOST}     ? $ENV{DATABASE_HOST}     : $db_config{host};
+	my $port     = $ENV{DATABASE_PORT}     ? $ENV{DATABASE_PORT}     : $db_config{port};
+	my $database = $ENV{DATABASE_NAME}     ? $ENV{DATABASE_NAME}     : $db_config{database};
 
 	if ($database) {
 		my $dsn    = "dbi:Pg:dbname=$database;host=$host;port=$port";
