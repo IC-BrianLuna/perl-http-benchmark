@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: my_postgres_container
+    restart: always
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+
+  server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: my_server_container
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: mydatabase
+      DATABASE_USER: myuser
+      DATABASE_PASSWORD: mypassword
+    ports:
+      - "8080:8080"
