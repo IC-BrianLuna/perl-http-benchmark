@@ -5,7 +5,7 @@ A simple perl server that returns a string used for a benchmark test running Any
 8080
 
 ## Endpoint 
-/api/devices 
+/api/benchmark 
 
 ## Dependancies 
 libjson-perl
