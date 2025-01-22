@@ -14,7 +14,8 @@ libjson-xs-perl
 
 libanyevent-httpd-perl
 
-# Docker commands
-docker build -t my-perl-server .
+## Docker commands
+docker-compose up --build -d
 
-docker run -d -p 8080:8080 --name perl-server my-perl-server
+## Benchmark CLI
+ab -v 3 -c 10 -n 1000 "http://localhost:8080/api/benchmark" 
