@@ -7,13 +7,6 @@ A simple perl server that returns a string used for a benchmark test running Any
 ## Endpoint 
 /api/benchmark 
 
-## Dependancies 
-libjson-perl
-
-libjson-xs-perl
-
-libanyevent-httpd-perl
-
 ## Docker commands
 docker-compose up --build -d
 
