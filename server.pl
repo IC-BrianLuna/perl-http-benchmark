@@ -6,12 +6,13 @@ use JSON::XS;
 use lib qw(./lib);
 use strict;
 use DBSimplePg;
+use bytes;
 
 $Data::Dumper::Sortkeys = 1;
 
 my $db   = DBSimplePg->new();
 my $port = 8080;
-my $json = JSON::XS->new()->pretty;
+my $json = JSON::XS->new();
 
 init();
 
@@ -44,20 +45,24 @@ sub benchmark {
 	my $result = {};
 
 	if ($id) {
-		my $fetch = $db->read(sql => 'SELECT name, email FROM users where id = ?', values => [$id]);
+		my $fetch = $db->read(sql => 'SELECT name, email FROM users WHERE id = ?', values => [$id]);
 		$result->{id}    = $id;
 		$result->{fetch} = $fetch;
 	}
 
-	my $json_content = $json->encode($result);
-	my @res          = keys %$result;
-	my $status       = @res ? 200  : 400;
-	my $msg          = @res ? 'OK' : 'Not Found';
+	my $json_content   = $json->encode($result);
+	my $content_length = bytes::length($json_content);
+
+	my @res    = keys %$result;
+	my $status = @res ? 200  : 400;
+	my $msg    = @res ? 'OK' : 'Not Found';
 
 	$req->respond([
 		$status, $msg,
 		{
-			'Content-Type' => 'application/json',
+			'Content-Type'   => 'application/json',
+			'Content-Length' => $content_length,
+			'Connection'     => 'close',
 		},
 		$json_content
 	]);
