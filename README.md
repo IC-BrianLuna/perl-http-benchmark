@@ -11,4 +11,4 @@ A simple perl server that returns a string used for a benchmark test running Any
 docker-compose up --build -d
 
 ## Benchmark CLI
-ab -v 3 -c 10 -n 1000 "http://localhost:8080/api/benchmark" 
+ab -l -v 3 -c 10 -n 1000 "http://localhost:8080/api/benchmark" 
