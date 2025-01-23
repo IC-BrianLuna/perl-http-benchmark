@@ -10,7 +10,8 @@ RUN apt-get clean
 
 ENV PERL5LIB /usr/share/perl5
 
-COPY server.pl .
-COPY lib/ lib/ 
+WORKDIR /app
+COPY server.pl app/
+COPY lib/ app/lib/ 
 EXPOSE 8080
 CMD ["./server.pl"]
