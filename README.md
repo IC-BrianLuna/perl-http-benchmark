@@ -1,5 +1,5 @@
 ## Description
-A simple perl server that returns a string used for a benchmark test running AnyEvent::HTTPD.
+A simple perl server that does a postgres write and read used for a benchmark test running AnyEvent::HTTPD.
 
 ## Port 
 8080

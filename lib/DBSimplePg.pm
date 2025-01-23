@@ -82,7 +82,7 @@ sub write {
 	my $values = $args{values} ? $args{values} : [];
 	my @values = @$values      ? @$values      : ();
 
-	my $rec;
+	my $rec = {};
 
 	if ($sql) {
 		my $dbh = $self->connect();
