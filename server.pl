@@ -1,12 +1,13 @@
 #!/usr/bin/perl -w 
 
-use AnyEvent::HTTPD;
-use Data::Dumper;
-use JSON::XS;
-use lib qw(./lib);
 use strict;
-use DBSimplePg;
+use lib qw(./lib);
+
 use bytes;
+use JSON::XS;
+use DBSimplePg;
+use Data::Dumper;
+use AnyEvent::HTTPD;
 
 $Data::Dumper::Sortkeys = 1;
 
