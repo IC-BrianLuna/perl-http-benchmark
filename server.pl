@@ -27,6 +27,7 @@ sub init {
         help => 'Total benchmark requests',
         type => 'counter'
     );
+
     $prometheus->declare(
         'benchmark_last_insert_time',
         help => 'Last user insert time',
