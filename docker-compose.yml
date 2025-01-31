@@ -30,3 +30,14 @@ services:
       DATABASE_PASSWORD: mypassword
     ports:
       - "8080:8080"
+
+  prometheus:
+    image: prom/prometheus
+    container_name: my_prometheus_container
+    restart: always
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - server
