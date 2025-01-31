@@ -38,12 +38,7 @@ sub init {
         },
         '/metrics' => sub {
             my ( $httpd, $req ) = @_;
-            $req->respond(
-                [
-                    200,                                'OK',
-                    { 'Content-Type' => 'text/plain' }, $prometheus->format
-                ]
-            );
+            $req->respond( [ 200, 'OK', { 'Content-Type' => 'text/plain' }, $prometheus->format ] );
         }
     );
 
