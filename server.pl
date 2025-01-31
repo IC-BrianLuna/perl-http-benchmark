@@ -6,11 +6,8 @@ use lib qw(./lib);
 use bytes;
 use JSON::XS;
 use DBSimplePg;
-use Data::Dumper;
 use AnyEvent::HTTPD;
 use Prometheus::Tiny;
-
-$Data::Dumper::Sortkeys = 1;
 
 my $db         = DBSimplePg->new();
 my $port       = 8080;
