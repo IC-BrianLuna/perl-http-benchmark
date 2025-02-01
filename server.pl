@@ -80,7 +80,7 @@ sub benchmark {
     my $content_length = bytes::length($json_content);
 
     my @res    = keys %$result;
-    my $status = @res ? 200  : 400;
+    my $status = @res ? 200  : 404;
     my $msg    = @res ? 'OK' : 'Not Found';
 
     $req->respond(
